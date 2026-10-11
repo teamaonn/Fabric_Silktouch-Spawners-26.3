@@ -4,8 +4,21 @@
   "version": "${version}",
   "name": "TeamAONN Silk Touch Spawners",
   "description": "Netherite Silk Touch collects ordinary and trial spawners as ordinary spawners, retaining mob type.",
-  "authors": ["TeamAONN"],
+  "authors": [
+    "TeamAONN"
+  ],
   "environment": "*",
-  "entrypoints": { "main": ["com.teamaonn.silkspawners.SilkSpawnersMod"] },
-  "depends": { "fabricloader": ">=0.19.5", "minecraft": "26.3", "fabric-api": "*" }
+  "entrypoints": {
+    "main": [
+      "com.teamaonn.silkspawners.SilkSpawnersMod"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.5",
+    "minecraft": "26.3",
+    "fabric-api": "*"
+  },
+  "mixins": [
+    "teamaonn_silkspawners.mixins.json"
+  ]
 }
