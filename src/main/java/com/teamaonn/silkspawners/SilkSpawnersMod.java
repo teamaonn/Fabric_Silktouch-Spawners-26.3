@@ -3,6 +3,7 @@ package com.teamaonn.silkspawners;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.PlayerBlockBreakEvents;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -54,6 +55,12 @@ public final class SilkSpawnersMod implements ModInitializer {
 
             ItemStack drop = new ItemStack(Items.SPAWNER);
             drop.set(DataComponents.CUSTOM_DATA, CustomData.of(spawnerData));
+            String mobName = entityId.substring(entityId.indexOf(':') + 1).replace('_', ' ');
+            StringBuilder label = new StringBuilder();
+            for (String word : mobName.split(" ")) {
+                if (!word.isEmpty()) label.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(' ');
+            }
+            drop.set(DataComponents.CUSTOM_NAME, Component.literal(label.toString().trim() + " Spawner"));
             Block.popResource(serverLevel, pos, drop);
         });
     }
