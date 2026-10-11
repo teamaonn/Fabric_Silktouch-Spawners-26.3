@@ -2,7 +2,8 @@ package com.teamaonn.silkspawners.mixin;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Blocks;
@@ -28,7 +29,7 @@ public abstract class SpawnerPlacementMixin {
         var level = context.getLevel();
         if (!level.getBlockState(pos).is(Blocks.SPAWNER)) return;
         if (!(level.getBlockEntity(pos) instanceof SpawnerBlockEntity spawner)) return;
-        EntityType.byString(mobId).ifPresent(type -> {
+        BuiltInRegistries.ENTITY_TYPE.getOptional(ResourceLocation.parse(mobId)).ifPresent(type -> {
             spawner.getSpawner().setEntityId(type, level, level.getRandom(), pos);
             spawner.setChanged();
         });
