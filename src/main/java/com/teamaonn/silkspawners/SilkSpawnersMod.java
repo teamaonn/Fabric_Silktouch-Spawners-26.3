@@ -6,7 +6,9 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.component.CustomData;
+import net.minecraft.world.entity.TypedEntityData;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.core.registries.Registries;
@@ -52,8 +54,8 @@ public final class SilkSpawnersMod implements ModInitializer {
             spawnerData.put("SpawnData", newSpawnData);
 
             ItemStack drop = new ItemStack(Items.SPAWNER);
-            drop.set(DataComponents.BLOCK_ENTITY_DATA, CustomData.of(spawnerData));
-            BlockEntity.popResource(serverLevel, pos, drop);
+            drop.set(DataComponents.BLOCK_ENTITY_DATA, TypedEntityData.of(BlockEntityTypes.MOB_SPAWNER, spawnerData));
+            Block.popResource(serverLevel, pos, drop);
         });
     }
 }
