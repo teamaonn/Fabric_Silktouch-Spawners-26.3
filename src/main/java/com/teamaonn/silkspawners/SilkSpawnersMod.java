@@ -71,7 +71,7 @@ public final class SilkSpawnersMod implements ModInitializer {
             if (!state.is(Blocks.SPAWNER) && !state.is(Blocks.TRIAL_SPAWNER)) return InteractionResult.PASS;
             if (player.distanceToSqr(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5) > 4.0) return InteractionResult.PASS;
             ItemStack tool = player.getMainHandItem();
-            if (!tool.is(Items.NETHERITE_PICKAXE) || !hasSilkTouch(serverLevel, tool) || !hasTrials(serverLevel, tool)) return InteractionResult.PASS;
+            if (!tool.is(net.minecraft.tags.ItemTags.PICKAXES) || !hasTrials(serverLevel, tool)) return InteractionResult.PASS;
             ItemStack drop = makeSpawnerDrop(serverLevel, state, level.getBlockEntity(pos));
             if (drop.isEmpty()) return InteractionResult.PASS;
             if (!level.destroyBlock(pos, false, player)) return InteractionResult.PASS;
@@ -82,9 +82,8 @@ public final class SilkSpawnersMod implements ModInitializer {
             if (!(level instanceof ServerLevel serverLevel)) return;
             if (!state.is(Blocks.SPAWNER) && !state.is(Blocks.TRIAL_SPAWNER)) return;
             ItemStack tool = player.getMainHandItem();
-            if (!tool.is(Items.NETHERITE_PICKAXE)) return;
-
-            if (!hasSilkTouch(serverLevel, tool)) return;
+            boolean trials = tool.is(net.minecraft.tags.ItemTags.PICKAXES) && hasTrials(serverLevel, tool);
+            if (!trials && !(tool.is(Items.NETHERITE_PICKAXE) && hasSilkTouch(serverLevel, tool))) return;
             ItemStack drop = makeSpawnerDrop(serverLevel, state, blockEntity);
             if (drop.isEmpty()) return;
             Block.popResource(serverLevel, pos, drop);
