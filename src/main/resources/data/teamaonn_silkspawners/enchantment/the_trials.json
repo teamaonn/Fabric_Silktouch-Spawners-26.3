@@ -2,8 +2,8 @@
   "description": {
     "translate": "enchantment.teamaonn_silkspawners.the_trials"
   },
-  "supported_items": "#minecraft:enchantable/mining",
-  "primary_items": "#minecraft:enchantable/mining",
+  "supported_items": "#minecraft:pickaxes",
+  "primary_items": "#minecraft:pickaxes",
   "weight": 2,
   "max_level": 1,
   "min_cost": {

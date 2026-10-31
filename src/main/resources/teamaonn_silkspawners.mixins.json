@@ -3,7 +3,8 @@
   "package": "com.teamaonn.silkspawners.mixin",
   "compatibilityLevel": "JAVA_25",
   "mixins": [
-    "SpawnerPlacementMixin"
+    "SpawnerPlacementMixin",
+    "EnchantmentMenuMixin"
   ],
   "injectors": {
     "defaultRequire": 1
